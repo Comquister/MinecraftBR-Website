@@ -1,304 +1,264 @@
 <!DOCTYPE html>
-  <html lang="pt-BR">
-  <head>
+<html lang="pt-BR">
+<head>
     <meta charset="UTF-8">
-    <title>MinecraftBr Launcher</title>
-    <link rel="icon" href="./image/favicon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MinecraftBR Launcher</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
-
-        body {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            background: #121212 url('./image/background.png') center/cover no-repeat;
-            image-rendering: pixelated;
-            color: #FFFFFF;
-        }
-
-        header {
-            width: 100%;
-            padding: 20px;
-            text-align: center;
-        }
-
-        header img {
-            width: 300px;
-            max-width: 80%;
-            margin-bottom: 20px;
-        }
-
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.75);
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            padding: 30px 40px;
-            width: 600px;
-            margin-bottom: 50px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.6);
-        }
-
-        .user-display {
-            background: linear-gradient(135deg, #0f4c75, #3282b8);
-            border: 1px solid #4a90a4;
-            border-radius: 8px;
-            padding: 12px;
-            width: 100%;
-            margin-bottom: 25px;
-            text-align: center;
-            font-size: 16px;
-            color: #FFFFFF;
-            font-weight: 600;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 12px rgba(15, 76, 117, 0.4);
-            text-transform: uppercase;
-        }
-
-        .login-block {
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-            width: 100%;
-        }
-
-        .terminal {
-            background: linear-gradient(145deg, #0c0c0c, #1a1a1a);
-            border: 2px solid #2d5016;
-            border-radius: 12px;
-            padding: 20px;
-            cursor: pointer;
-            font-family: 'Consolas', 'Courier New', monospace;
-            font-size: 11px;
-            color: #00ff00;
-            line-height: 1.4;
-            box-shadow: 
-                inset 0 2px 4px rgba(0,255,0,0.1),
-                0 6px 20px rgba(0,0,0,0.8);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh; background: #121212 url('./image/background.png') center/cover no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             position: relative;
+            overflow-x: hidden;
+            image-rendering: pixelated; 
+        }
+        body::before { content: ''; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.7); z-index: -1; }
+
+        .container { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: clamp(10px, 2vw, 20px); 
+            padding: clamp(10px, 2vw, 20px); 
+            max-width: 1400px; 
+            margin: 0 auto; 
+            min-height: 100vh; 
+            align-content: flex-start;
+        }
+
+        .box { 
+            background: rgba(0, 0, 0, 0.164); 
+            border-radius: clamp(10px, 2vw, 20px); 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); 
+            display: flex; 
+            flex-direction: column; 
+            padding: clamp(10px, 2vw, 20px); 
+            backdrop-filter: blur(10px); 
+            border: 1px solid rgba(255, 255, 255, 0.2); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             overflow: hidden;
-            white-space: pre-wrap;
+        }
+        .box:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4); }
+
+        .intro { flex: 1 1 min(400px, 100%); min-height: clamp(200px, 25vh, 300px); }
+        .install { flex: 1 1 min(350px, 100%); min-height: clamp(180px, 22vh, 280px); }
+        .how-works { flex: 1 1 min(280px, 100%); min-height: clamp(160px, 20vh, 240px); }
+        .features { flex: 2 1 min(320px, 100%); min-height: clamp(200px, 25vh, 300px); }
+        .requirements { flex: 1 1 min(250px, 100%); min-height: clamp(140px, 18vh, 220px); }
+        .structure { flex: 1 1 min(280px, 100%); min-height: clamp(160px, 20vh, 240px); }
+        .advanced { flex: 2 1 min(400px, 100%); min-height: clamp(180px, 22vh, 260px); }
+        .troubleshoot { flex: 2 1 min(350px, 100%); min-height: clamp(200px, 25vh, 300px); }
+        .github-btn { flex: 1 1 min(300px, 100%); min-height: clamp(120px, 15vh, 180px); align-items: center; justify-content: center; }
+        .credits { flex: 1 1 min(280px, 100%); min-height: clamp(140px, 18vh, 200px); }
+
+        .box h2 { color: #1379df; margin-bottom: clamp(8px, 1.5vw, 15px); font-size: clamp(1rem, 2.5vw, 1.8rem); display: flex; align-items: center; gap: clamp(5px, 1vw, 10px); justify-content: flex-start; flex-shrink: 0; }
+        .box h3 { color: #34495e; margin-bottom: clamp(5px, 1vw, 10px); font-size: clamp(0.9rem, 2vw, 1.3rem); flex-shrink: 0; }
+        .box p, .box ul { color: #a7a7a7; font-size: clamp(0.75rem, 1.5vw, 1rem); line-height: 1.4; margin-bottom: clamp(5px, 1vw, 10px); }
+        .box ul { list-style: none; padding: 0; }
+        .box ul li { margin-bottom: clamp(3px, 0.5vw, 5px); position: relative; padding-left: clamp(10px, 1.5vw, 15px); }
+        .box ul li::before { content: '▶'; color: #3498db; position: absolute; left: 0; }
+
+        .command-box { 
+            background: #2c3e50; 
+            color: #ecf0f1; 
+            padding: clamp(6px, 1vw, 12px); 
+            border-radius: clamp(4px, 1vw, 8px); 
+            font-family: 'Consolas', monospace; 
+            font-size: clamp(0.6rem, 1.2vw, 0.9rem); 
+            margin: clamp(5px, 1vw, 10px) 0; 
+            word-break: break-all; 
+            flex-shrink: 0;
         }
 
-        .terminal::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #00ff00, #32cd32, #00ff00);
-            opacity: 0.8;
+        .github-link { 
+            background: linear-gradient(135deg, #24292e, #444d56); 
+            color: rgb(255, 255, 255); 
+            text-decoration: none; 
+            padding: clamp(15px, 3vw, 30px); 
+            border-radius: 50px; 
+            font-size: clamp(0.9rem, 2vw, 1.3rem); 
+            font-weight: 600; 
+            display: flex; 
+            align-items: center; 
+            gap: clamp(8px, 1.5vw, 15px); 
+            justify-content: center; 
+            transition: all 0.3s ease; 
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); 
+            border: none; 
+            width: 100%; 
+            height: 100%;
+        }
+        .github-link:hover { background: linear-gradient(135deg, #444d56, #586069); transform: scale(1.05); box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4); }
+        .github-link i { font-size: clamp(1.2rem, 3vw, 2rem); }
+
+        @media (max-width: 1200px) {
+            .intro, .install, .features, .advanced, .troubleshoot { flex: 1 1 min(45%, 100%); }
+            .how-works, .requirements, .structure, .github-btn, .credits { flex: 1 1 min(30%, 100%); }
         }
 
-        .terminal:hover {
-            background: linear-gradient(145deg, #111111, #222222);
-            border-color: #4a7c59;
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 
-                inset 0 2px 8px rgba(0,255,0,0.15),
-                0 12px 30px rgba(0,0,0,0.9),
-                0 0 20px rgba(0,255,0,0.2);
-            color: #32ff32;
+        @media (max-width: 768px) {
+            .container { flex-direction: column; gap: clamp(8px, 2vw, 15px); }
+            .box { flex: 1 1 auto; min-height: auto; }
+            .intro, .install { min-height: clamp(150px, 20vh, 200px); }
+            .how-works, .requirements, .structure { min-height: clamp(120px, 16vh, 160px); }
+            .features, .troubleshoot { min-height: clamp(160px, 22vh, 220px); }
+            .advanced { min-height: clamp(140px, 18vh, 180px); }
+            .github-btn { min-height: clamp(80px, 12vh, 120px); }
+            .credits { min-height: clamp(100px, 14vh, 140px); }
         }
 
-        .terminal::after {
-            content: "🖱️ Clique para copiar o comando PowerShell";
-            position: absolute;
-            bottom: 8px;
-            right: 15px;
-            font-size: 10px;
-            color: #888888;
-            opacity: 0.7;
-            font-family: 'Segoe UI', sans-serif;
-            background: rgba(0,0,0,0.6);
-            padding: 4px 8px;
-            border-radius: 4px;
-            transition: opacity 0.3s ease;
+        @media (max-width: 480px) {
+            .box { padding: clamp(8px, 2vw, 12px); }
+            .box h2 { font-size: clamp(0.9rem, 4vw, 1.2rem); }
+            .box p, .box ul { font-size: clamp(0.7rem, 3vw, 0.85rem); }
+            .command-box { font-size: clamp(0.55rem, 2.5vw, 0.7rem); padding: clamp(4px, 1vw, 8px); }
+            .github-link { padding: clamp(10px, 2vw, 15px); font-size: clamp(0.8rem, 3.5vw, 1rem); }
         }
 
-        .terminal:hover::after {
-            opacity: 1;
-            color: #bbbbbb;
+        @media (min-width: 1400px) {
+            .container { max-width: 1600px; }
+            .intro { flex: 2 1 500px; }
+            .install { flex: 1.5 1 400px; }
+            .features { flex: 2.5 1 450px; }
+            .troubleshoot { flex: 2.5 1 450px; }
+            .advanced { flex: 3 1 600px; }
         }
 
-        .prompt {
-            color: #ffff00;
-            font-weight: bold;
-        }
-
-        .command {
-            color: #ff6b6b;
-            font-weight: bold;
-        }
-
-        .success {
-            color: #00ff00;
-        }
-
-        .info {
-            color: #87ceeb;
-        }
-
-        .warning {
-            color: #ffa500;
-        }
-
-        .cursor {
-            color: #00ff00;
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-
-        footer {
-            margin-top: auto;
-            margin-bottom: 20px;
-            font-size: 12px;
-            color: #BBBBBB;
-            text-align: center;
-        }
-
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, #2d5016, #4a7c59);
-            color: white;
-            padding: 15px 25px;
-            border-radius: 8px;
-            border: 1px solid #00ff00;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.7);
-            font-family: 'Segoe UI', sans-serif;
-            font-size: 14px;
-            font-weight: 500;
-            opacity: 0;
-            transform: translateX(300px);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 1000;
-            max-width: 350px;
-        }
-
-        .notification.show {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        @media (max-width: 650px) {
-            .container {
-                width: 95%;
-                margin: 20px;
-                padding: 20px 25px;
-            }
-            
-            .terminal {
-                font-size: 10px;
-                padding: 15px;
-            }
-        }
+        .content-wrapper { display: flex; flex-direction: column; height: 100%; overflow: hidden; }
+        .content-main { flex: 1; overflow-y: auto; }
+        .content-footer { flex-shrink: 0; margin-top: auto; }
     </style>
 </head>
 <body>
+    <div class="container">
+        <div class="box intro">
+            <div class="content-wrapper">
+                <div class="content-main">
+                    <h2><i class="bi bi-rocket-takeoff"></i> MinecraftBR Launcher</h2>
+                    <p>Um launcher portátil de Minecraft que executa diretamente do PowerShell. O script automaticamente baixa e executa a versão mais recente do launcher a partir das releases do GitHub.</p>
+                </div>
+                <div class="content-footer">
+                    <p><strong>Características:</strong> Auto-atualização, Cache inteligente, Interface brasileira, Configuração otimizada.</p>
+                </div>
+            </div>
+        </div>
 
-<header>
-    <img src="https://minecraftbr.com/logo.png" alt="MinecraftBr Logo">
-</header>
+        <div class="box install">
+            <h2><i class="bi bi-download"></i> Instalação</h2>
+            <p><strong>Via PowerShell</strong></p>
+            <p>Execute o seguinte comando no PowerShell:</p>
+            <pre class="command-box">powershell -c "irm minecraftbr.com | iex"</pre>
+        </div>
 
-<div class="container">
-    <div class="user-display">🖥️ Windows PowerShell</div>
 
-    <div class="login-block">
-        <div class="terminal" onclick="copyCommand()">
-<span class="info">╔════════════════════════════════════════════╗</span>
-<span class="info">║          🎮 MinecraftBR Launcher           ║</span>
-<span class="info">║         Instalador Automático v2.0         ║</span>
-<span class="info">╚════════════════════════════════════════════╝</span>
+        <div class="box how-works">
+            <h2><i class="bi bi-gear"></i> Como Funciona</h2>
+            <ul>
+                <li>Detecção automática via GitHub API</li>
+                <li>Download inteligente (SHA256)</li>
+                <li>Pasta dedicada: %APPDATA%\.minecraftbr</li>
+                <li>Execução automática</li>
+                <li>Atualizações automáticas</li>
+            </ul>
+        </div>
 
-<span class="warning">🔍 Status da Instalação:</span>
-   <span class="success">Python 3.13: ✅ Instalado</span>
-   <span class="success">Pacotes necessários: ✅ Instalados</span>
-   <span class="success">Launcher: ✅ Pronto para usar</span>
-   <span class="info">Tamanho total: 1030.1 MB</span>
+        <div class="box features">
+            <div class="content-wrapper">
+                <div class="content-main">
+                    <h2><i class="bi bi-stars"></i> Recursos</h2>
+                    <ul>
+                        <li><strong>Auto-atualização:</strong> Sempre usa versão mais recente</li>
+                        <li><strong>Cache inteligente:</strong> Evita downloads desnecessários</li>
+                        <li><strong>Gestão de versões:</strong> Vanilla e modificadas</li>
+                        <li><strong>Interface brasileira:</strong> Localizada em português</li>
+                        <li><strong>Configuração otimizada:</strong> Settings pré-configurados</li>
+                        <li><strong>Detecção Java:</strong> Instalação automática</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-<span class="warning">🎮 O que você deseja fazer?</span>
+        <div class="box requirements">
+            <h2><i class="bi bi-pc-display"></i> Requisitos</h2>
+            <ul>
+                <li>Windows 10 ou superior</li>
+                <li>Conexão com internet</li>
+                <li>4GB RAM mínimo</li>
+                <li>8GB RAM recomendado</li>
+            </ul>
+        </div>
 
-<span class="info">1️⃣  🚀 Executar MinecraftBR Launcher</span>
-<span class="info">2️⃣  🔧 Reparar/Reinstalar</span>
-<span class="info">3️⃣  📋 Informações Detalhadas</span>
-<span class="info">4️⃣  🔗 Criar Atalho na Área de Trabalho</span>
-<span class="info">5️⃣  🗑️  Desinstalar Completamente</span>
-<span class="info">0️⃣  ❌ Sair</span>
+        <div class="box structure">
+            <h2><i class="bi bi-folder"></i> Estrutura</h2>
+            <p><strong>%APPDATA%\.minecraftbr/</strong></p>
+            <ul>
+                <li>MinecraftBR-Launcher.exe</li>
+                <li>config/ - Configurações</li>
+                <li>instances/ - Instâncias</li>
+                <li>cache/ - Cache de downloads</li>
+            </ul>
+        </div>
 
-<span class="prompt">Digite sua escolha (0-5):</span> <span class="cursor">█</span>
+        <div class="box advanced">
+            <div class="content-wrapper">
+                <div class="content-main">
+                    <h2><i class="bi bi-terminal"></i> Uso Avançado</h2>
+                    <p><strong>Execução direta:</strong></p>
+                    <div class="command-box">irm https://raw.githubusercontent.com/Comquister/MinecraftBR-Launcher/refs/heads/main/index.ps1 | iex</div>
+                </div>
+                <p><strong>Via EXE</strong></p>
+                <p>Ou baixe o arquivo executável diretamente do GitHub: <a href="https://github.com/Comquister/MinecraftBR-Launcher/releases/latest" target="_blank" class="btn btn-primary">Baixar EXE</a></p>
+                <div class="content-footer">
+                    <p><strong>Limpeza manual:</strong></p>
+                    <div class="command-box">Remove-Item -Path "$env:APPDATA\.minecraftbr" -Recurse -Force</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="box troubleshoot">
+            <div class="content-wrapper">
+                <div class="content-main">
+                    <h2><i class="bi bi-tools"></i> Problemas</h2>
+                    <h3>Falha no Download:</h3>
+                    <ul>
+                        <li>Verifique conexão</li>
+                        <li>Confirme acesso ao GitHub</li>
+                        <li>Desative antivírus temporariamente</li>
+                    </ul>
+                </div>
+                <div class="content-footer">
+                    <h3>Launcher Não Inicia:</h3>
+                    <ul>
+                        <li>Execute como Administrador</li>
+                        <li>Verifique Windows Defender</li>
+                        <li>Confirme permissões de escrita</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="box github-btn">
+            <a href="https://github.com/Comquister/MinecraftBR-Launcher" class="github-link" target="_blank">
+                <i class="bi bi-github"></i>
+                <span>Acessar GitHub</span>
+            </a>
+        </div>
+
+        <div class="box credits">
+            <h2><i class="bi bi-heart"></i> Créditos</h2>
+            <p><strong>Licença:</strong> MIT License</p>
+            <p><strong>Desenvolvido por:</strong> Conquister</p>
+            <p><strong>Links importantes:</strong></p>
+            <ul>
+                <li>Repositório no GitHub</li>
+                <li>Releases e Downloads</li>
+                <li>Reportar Issues</li>
+            </ul>
         </div>
     </div>
-</div>
-
-<!-- <footer>
-    MinecraftBr Launcher Web - Execute o PowerShell como Administrador
-</footer> -->
-
-<div id="notification" class="notification"></div>
-
-<script>
-function copyCommand() {
-    const command = 'powershell -c "irm https://minecraftbr.com/|iex"';
-    
-    navigator.clipboard.writeText(command).then(() => {
-        showNotification("✅ Comando copiado com sucesso!", "success");
-    }).catch(err => {
-        // Fallback para navegadores que não suportam clipboard API
-        const textArea = document.createElement('textarea');
-        textArea.value = command;
-        textArea.style.position = 'fixed';
-        textArea.style.left = '-999999px';
-        textArea.style.top = '-999999px';
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-        
-        try {
-            document.execCommand('copy');
-            showNotification("✅ Comando copiado com sucesso!\n\n📋 Cole no PowerShell (como Admin) e pressione Enter", "success");
-        } catch (err) {
-            showNotification("❌ Erro ao copiar. Comando:\npowershell -c \"irm https://minecraftbr.com/|iex\"", "error");
-        } finally {
-            document.body.removeChild(textArea);
-        }
-    });
-}
-
-function showNotification(message, type = "success") {
-    const notification = document.getElementById('notification');
-    notification.textContent = message;
-    notification.style.background = type === "success" 
-        ? "linear-gradient(135deg, #2d5016, #4a7c59)" 
-        : "linear-gradient(135deg, #5d1a1a, #8b2c2c)";
-    notification.style.borderColor = type === "success" ? "#00ff00" : "#ff4444";
-    
-    notification.classList.add('show');
-    
-    setTimeout(() => {
-        notification.classList.remove('show');
-    }, 4000);
-}
-
-// Adiciona efeito de digitação no cursor
-setInterval(() => {
-    const cursor = document.querySelector('.cursor');
-    if (cursor) {
-        cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
-    }
-}, 500);
-</script>
-
 </body>
 </html>
