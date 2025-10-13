@@ -1,0 +1,16 @@
+{
+    "TARGET_HOST": "jogar.minecraftbr.com",
+    "TARGET_PORT": 25565,
+    "PROXY_PORT": 25565,
+    "MOTD": "§aMinecraftBr - Voice Chat - 1.20.5+",
+    "BROADCAST_INTERVAL": 0.5,
+    "STATUS_VERSION_TEXT": "MinecraftBr",
+    "STATUS_MAX_PLAYERS": 0,
+    "STATUS_ONLINE_PLAYERS": 0,
+    "STATUS_DESCRIPTION": "§aMinecraftBr - Voice Chat - 1.20.5+",
+    "SLEEP_AFTER_LOGIN": 0.1,
+    "SLEEP_AFTER_KNOWN_PACKS": 0.05,
+    "SLEEP_BEFORE_TRANSFER": 0.05,
+    "SLEEP_AFTER_TRANSFER": 0.2,
+    "CLIENT_RESPONSE_TIMEOUT": 1.0
+}
