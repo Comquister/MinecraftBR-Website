@@ -129,7 +129,7 @@
   <header class="mt-2 fixed w-full z-50 transition-smooth">
     <nav class="bg-gray-800 rounded-xl overflow-x-auto shadow-md container mx-auto max-w-[1200px] flex justify-between items-center p-2">
       <a href="#inicio" class="flex items-center space-x-2 mr-4">
-        <img src="https://minecraftbr.com/image/logo.png" alt="Infcraft Logo" class="w-48 transition-smooth hover:scale-105">
+        <img src="https://minecraftbr.com/image/logo.png" alt="Infcraft Logo" class="h-10 transition-smooth hover:scale-105">
       </a>
       <ul class="flex space-x-4">
         <li><a href="#inicio" class="hover:text-blue-400 transition-smooth">Início</a></li>
@@ -152,14 +152,55 @@
 
   <!-- Hero -->
   <section id="inicio" class="h-screen max-h-[800px] flex flex-col justify-center items-center text-center px-4">
-    <img src="https://minecraftbr.com/image/logo.png" alt="Infcraft" class="max-w-[600px] mb-6 reveal" fetchpriority="high">
+    <img src="https://minecraftbr.com/image/logo.png" alt="MinecraftBR" class="max-w-[600px] mb-6 reveal" fetchpriority="high">
     <h1 class="text-4xl md:text-5xl font-bold mb-4 reveal">
-      Bem-vindo ao <span class="text-blue-400">Infcraft</span>
+      Bem-vindo ao <span class="text-blue-400">MinecraftBR</span>
     </h1>
     <p class="text-lg text-gray-300 mb-6 max-w-xl reveal">
       Um servidor Minecraft feito para você se divertir, explorar e criar junto com amigos.
     </p>
   </section>
+
+
+  <!-- Sobre -->
+    <section id="sobre" class="relative">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none" class="w-full h-30">
+            <path fill="#1F2937" d="M0,0 L1000,100 L1000,100 L0,100 Z"></path>
+        </svg>
+        <div class="py-20 bg-gray-800">
+            <div class="container max-w-[1200px] mx-auto text-center px-6">
+                <h2 class="text-3xl font-bold mb-8 reveal">Sobre Nós</h2>
+                <p class="text-gray-300 text-lg mb-12 reveal">
+                    Somos uma plataforma feita por desenvolvedores, para desenvolvedores, para ajudar você a criar e
+                    gerenciar seus servidores com liberdade e controle total.
+                </p>
+                <div class="grid md:grid-cols-3 mb-12 gap-8">
+                    <div class="bg-gray-700 p-6 rounded-lg shadow-md card-hover transition-smooth reveal">
+                        <h3 class="text-xl font-bold mb-3">Missão</h3>
+                        <p class="text-gray-300">
+                            Oferecer servidores estáveis, rápidos e confiáveis para que todos possam jogar sem
+                            problemas.
+                        </p>
+                    </div>
+                    <div class="bg-gray-700 p-6 rounded-lg shadow-md card-hover transition-smooth reveal">
+                        <h3 class="text-xl font-bold mb-3">Comunidade</h3>
+                        <p class="text-gray-300">
+                            Criar um espaço para interação, amizades e eventos que juntam jogadores todos os dias.
+                        </p>
+                    </div>
+                    <div class="bg-gray-700 p-6 rounded-lg shadow-md card-hover transition-smooth reveal">
+                        <h3 class="text-xl font-bold mb-3">Valores</h3>
+                        <p class="text-gray-300">
+                            Respeito, dedicação e suporte próximo para garantir que todos tenham a melhor experiência.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none" class="w-full h-30">
+            <path fill="#1F2937" d="M1000,100 L1000,0 L1000,0 L0,0 Z"></path>
+        </svg>
+    </section>
 
   <!-- Toast -->
   <div id="toast" class="invisible fixed bottom-20 inset-x-0 flex justify-center z-50 pointer-events-none transition-opacity duration-500">
@@ -193,7 +234,7 @@
 
   <!-- Footer -->
   <footer class="py-4 text-center text-gray-400 transition-smooth reveal">
-    <p>&copy; <span id="year"></span> Infcraft. Todos os direitos reservados.</p>
+    <p>&copy; <span id="year"></span> MinecraftBR. Todos os direitos reservados.</p>
   </footer>
 </body>
 </html>
