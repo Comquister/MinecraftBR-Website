@@ -1,23 +1,53 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="google-adsense-account" content="ca-pub-2862676671834903">
-  <title>MinecraftBR</title>
-  <meta name="description" content="MinecraftBR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="google-adsense-account" content="ca-pub-2862676671834903">
+        <title>MinecraftBR</title>
+        <meta name="description" content="MinecraftBR">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/image/favicon.png"/>
-  <link rel="icon" type="image/ico" href="/image/favicon.ico" />
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="/image/favicon.png" />
+        <link rel="icon" type="image/ico" href="/image/favicon.ico" />
 
-  <!-- Tailwind CDN (para manter o estilo original do Laravel Mix) -->
-  <script src="https://cdn.tailwindcss.com"></script>
+        <!-- Tailwind CDN (para manter o estilo original do Laravel Mix) -->
+        <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Preconnect -->
-  <link rel="preconnect" href="https://cdn.infcraft.net">
+        <!-- Preconnect -->
+        <link rel="preconnect" href="https://cdn.infcraft.net">
 
-  <script>
+        <script>
+
+            function copiarip() {
+            const ip = "minecraftbr.com";
+            navigator.clipboard.writeText(ip).then(() => {
+                const toast = document.getElementById("toast");
+                const inner = toast.firstElementChild;
+
+                // Resetar animações
+                inner.classList.remove('animate-fadeIn', 'animate-fadeOut');
+
+                // Mostrar o toast
+                toast.classList.remove('invisible');
+                inner.classList.add('animate-fadeIn');
+
+                // Esconder depois de 3 segundos
+                setTimeout(() => {
+                    inner.classList.remove('animate-fadeIn');
+                    inner.classList.add('animate-fadeOut');
+
+                    // Espera a animação de fadeOut terminar antes de adicionar invisible
+                    const onFadeOutEnd = () => {
+                        toast.classList.add('invisible'); // agora some sem piscada
+                        inner.classList.remove('animate-fadeOut');
+                        inner.removeEventListener('animationend', onFadeOutEnd);
+                    };
+
+                    inner.addEventListener('animationend', onFadeOutEnd);
+                }, 3000);
+            });
+        }
 
     // Scroll Reveal
     document.addEventListener('DOMContentLoaded', () => {
@@ -57,9 +87,9 @@
       });
       iframes.forEach(iframe => observer.observe(iframe));
     });
-  </script>
+        </script>
 
-  <style>
+        <style>
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -116,110 +146,160 @@
     }
 
     .transition-smooth { transition: all 0.3s ease-in-out; }
-  </style>
-</head>
+        </style>
+    </head>
 
-<body class="bg-gray-900 text-white">
+    <body class="bg-gray-900 text-white">
 
-  <!-- Navbar -->
-  <header class="mt-2 fixed w-full z-50 transition-smooth">
-    <nav class="bg-gray-800 rounded-xl overflow-x-auto shadow-md container mx-auto max-w-[1200px] flex justify-between items-center p-2">
-      <a href="#inicio" class="flex items-center space-x-2 mr-4">
-        <img src="/image/logo.png" alt="Infcraft Logo" class="h-10 transition-smooth hover:scale-105">
-      </a>
-      <ul class="flex space-x-4">
-        <li><a href="#inicio" class="hover:text-blue-400 transition-smooth">Início</a></li>
-        <li><a href="#sobre" class="hover:text-blue-400 transition-smooth">Sobre</a></li>
-        <li><a href="#contato" class="hover:text-blue-400 transition-smooth">Contato</a></li>
-      </ul>
-    </nav>
-  </header>
+        <!-- Navbar -->
+        <header class="mt-2 fixed w-full z-50 transition-smooth">
+            <nav
+                class="bg-gray-800 rounded-xl overflow-x-auto shadow-md container mx-auto max-w-[1200px] flex justify-between items-center p-2">
+                <a href="#inicio" class="flex items-center space-x-2 mr-4">
+                    <img src="/image/logo.png" alt="Infcraft Logo"
+                        class="h-10 transition-smooth hover:scale-105">
+                </a>
+                <ul class="flex space-x-4">
+                    <li><a href="#inicio"
+                            class="hover:text-blue-400 transition-smooth">Início</a></li>
+                    <li><a href="#sobre"
+                            class="hover:text-blue-400 transition-smooth">Sobre</a></li>
+                    <li><a href="#contato"
+                            class="hover:text-blue-400 transition-smooth">Contato</a></li>
+                </ul>
+            </nav>
+        </header>
 
-  <!-- Hero -->
-  <section id="inicio" class="h-screen max-h-[800px] flex flex-col justify-center items-center text-center px-4">
-    <img src="/image/logo.png" alt="MinecraftBR" class="max-w-[600px] mb-6 reveal" fetchpriority="high">
-    <h1 class="text-4xl md:text-5xl font-bold mb-4 reveal">
-      Bem-vindo ao <span class="text-blue-400">MinecraftBR</span>
-    </h1>
-    <p class="text-lg text-gray-300 mb-6 max-w-xl reveal">
-      Um servidor Minecraft feito para você se divertir, explorar e criar junto com amigos.
-    </p>
-  </section>
+        <!-- Toast -->
+        <div id="toast"
+            class="invisible fixed bottom-20 inset-x-0 flex justify-center z-50 pointer-events-none transition-opacity duration-500">
+            <div
+                class="bg-green-600 text-white px-6 py-2 rounded-lg shadow-lg text-center">
+                IP copiado!</div>
+            </div>
+        </div>
 
+        <!-- Hero -->
+        <section id="inicio"
+            class="h-screen max-h-[800px] flex flex-col justify-center items-center text-center px-4">
+            <img src="/image/logo.png" alt="MinecraftBR"
+                class="max-w-[600px] mb-6 reveal" fetchpriority="high">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 reveal">
+                Bem-vindo ao <span class="text-blue-400">MinecraftBR</span>
+            </h1>
+            <p class="text-lg text-gray-300 mb-6 max-w-xl reveal">
+                Um servidor Minecraft feito para você se divertir, explorar e
+                criar
+                junto com amigos.
+            </p>
+            <button onclick="copiarip()"
+                class="bg-blue-500 hover:bg-blue-600 text-white font-bold px-6 py-3 rounded-lg shadow-lg transition-smooth transform hover:scale-105">
+                MinecraftBR.com
+            </button>
+        </section>
 
-  <!-- Sobre -->
-    <section id="sobre" class="relative">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none" class="w-full h-30">
-            <path fill="#1F2937" d="M0,0 L1000,100 L1000,100 L0,100 Z"></path>
-        </svg>
-        <div class="py-20 bg-gray-800">
-            <div class="container max-w-[1200px] mx-auto text-center px-6">
-                <h2 class="text-3xl font-bold mb-8 reveal">Sobre Nós</h2>
-                <p class="text-gray-300 text-lg mb-12 reveal">
-                    Somos uma plataforma feita por desenvolvedores, para desenvolvedores, para ajudar você a criar e
-                    gerenciar seus servidores com liberdade e controle total.
-                </p>
-                <div class="grid md:grid-cols-3 mb-12 gap-8">
-                    <div class="bg-gray-700 p-6 rounded-lg shadow-md card-hover transition-smooth reveal">
-                        <h3 class="text-xl font-bold mb-3">Missão</h3>
-                        <p class="text-gray-300">
-                            Oferecer servidores estáveis, rápidos e confiáveis para que todos possam jogar sem
-                            problemas.
-                        </p>
-                    </div>
-                    <div class="bg-gray-700 p-6 rounded-lg shadow-md card-hover transition-smooth reveal">
-                        <h3 class="text-xl font-bold mb-3">Comunidade</h3>
-                        <p class="text-gray-300">
-                            Criar um espaço para interação, amizades e eventos que juntam jogadores todos os dias.
-                        </p>
-                    </div>
-                    <div class="bg-gray-700 p-6 rounded-lg shadow-md card-hover transition-smooth reveal">
-                        <h3 class="text-xl font-bold mb-3">Valores</h3>
-                        <p class="text-gray-300">
-                            Respeito, dedicação e suporte próximo para garantir que todos tenham a melhor experiência.
-                        </p>
+        <!-- Sobre -->
+        <section id="sobre" class="relative">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100"
+                preserveAspectRatio="none" class="w-full h-30">
+                <path fill="#1F2937"
+                    d="M0,0 L1000,100 L1000,100 L0,100 Z"></path>
+            </svg>
+            <div class="py-20 bg-gray-800">
+                <div class="container max-w-[1200px] mx-auto text-center px-6">
+                    <h2 class="text-3xl font-bold mb-8 reveal">Sobre Nós</h2>
+                    <p class="text-gray-300 text-lg mb-12 reveal">
+                        Somos uma plataforma feita por desenvolvedores, para
+                        desenvolvedores, para ajudar você a criar e
+                        gerenciar seus servidores com liberdade e controle
+                        total.
+                    </p>
+                    <div class="grid md:grid-cols-3 mb-12 gap-8">
+                        <div
+                            class="bg-gray-700 p-6 rounded-lg shadow-md card-hover transition-smooth reveal">
+                            <h3 class="text-xl font-bold mb-3">Missão</h3>
+                            <p class="text-gray-300">
+                                Oferecer servidores estáveis, rápidos e
+                                confiáveis para que
+                                todos possam jogar sem
+                                problemas.
+                            </p>
+                        </div>
+                        <div
+                            class="bg-gray-700 p-6 rounded-lg shadow-md card-hover transition-smooth reveal">
+                            <h3 class="text-xl font-bold mb-3">Comunidade</h3>
+                            <p class="text-gray-300">
+                                Criar um espaço para interação, amizades e
+                                eventos que juntam
+                                jogadores todos os dias.
+                            </p>
+                        </div>
+                        <div
+                            class="bg-gray-700 p-6 rounded-lg shadow-md card-hover transition-smooth reveal">
+                            <h3 class="text-xl font-bold mb-3">Valores</h3>
+                            <p class="text-gray-300">
+                                Respeito, dedicação e suporte próximo para
+                                garantir que todos
+                                tenham a melhor experiência.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none" class="w-full h-30">
-            <path fill="#1F2937" d="M1000,100 L1000,0 L1000,0 L0,0 Z"></path>
-        </svg>
-    </section>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100"
+                preserveAspectRatio="none" class="w-full h-30">
+                <path fill="#1F2937"
+                    d="M1000,100 L1000,0 L1000,0 L0,0 Z"></path>
+            </svg>
+        </section>
 
-  <!-- Toast -->
-  <div id="toast" class="invisible fixed bottom-20 inset-x-0 flex justify-center z-50 pointer-events-none transition-opacity duration-500">
-    <div class="bg-green-600 text-white px-6 py-2 rounded-lg shadow-lg text-center">E-mail copiado!</div>
-  </div>
-
-  <!-- Contato -->
-  <section id="contato" class="py-20">
-    <div class="container max-w-[900px] mx-auto px-4">
-      <div class="grid md:grid-cols-2 gap-8 items-center">
-        <div class="text-center md:text-left">
-          <h2 class="text-3xl md:text-4xl font-bold mb-4 reveal">Entre em contato</h2>
-          <p class="text-gray-300 mb-6 reveal">Tem dúvidas? Fale com a gente!</p>
-          <div class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-6 reveal">
-            <a href="https://discord.gg/pqRwDAcMxK" target="_blank"
-              class="bg-blue-500 hover:bg-blue-600 text-white font-bold px-6 py-3 rounded-lg shadow-lg transition-smooth transform hover:scale-105">
-              Discord
-            </a>
-          </div>
+        <!-- Toast -->
+        <div id="toast"
+            class="invisible fixed bottom-20 inset-x-0 flex justify-center z-50 pointer-events-none transition-opacity duration-500">
+            <div
+                class="bg-green-600 text-white px-6 py-2 rounded-lg shadow-lg text-center">E-mail
+                copiado!</div>
         </div>
-        <div class="flex justify-center md:justify-end mt-6 md:mt-0 reveal">
-          <iframe data-src="https://discord.com/widget?id=1425285227940675656&theme=dark&presence=1"
-            width="300" height="450" allowtransparency="true" frameborder="0"
-            sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
-            class="rounded-lg shadow-lg transition-transform duration-500 transform">
-          </iframe>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Footer -->
-  <footer class="py-4 text-center text-gray-400 transition-smooth reveal">
-    <p>&copy; <span id="year"></span> MinecraftBR. Todos os direitos reservados.</p>
-  </footer>
-</body>
+        <!-- Contato -->
+        <section id="contato" class="py-20">
+            <div class="container max-w-[900px] mx-auto px-4">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="text-center md:text-left">
+                        <h2
+                            class="text-3xl md:text-4xl font-bold mb-4 reveal">Entre
+                            em
+                            contato</h2>
+                        <p class="text-gray-300 mb-6 reveal">Tem dúvidas? Fale
+                            com a
+                            gente!</p>
+                        <div
+                            class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-6 reveal">
+                            <a href="https://discord.gg/pqRwDAcMxK"
+                                target="_blank"
+                                class="bg-blue-500 hover:bg-blue-600 text-white font-bold px-6 py-3 rounded-lg shadow-lg transition-smooth transform hover:scale-105">
+                                Discord
+                            </a>
+                        </div>
+                    </div>
+                    <div
+                        class="flex justify-center md:justify-end mt-6 md:mt-0 reveal">
+                        <iframe
+                            data-src="https://discord.com/widget?id=1425285227940675656&theme=dark&presence=1"
+                            width="300" height="450" allowtransparency="true"
+                            frameborder="0"
+                            sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+                            class="rounded-lg shadow-lg transition-transform duration-500 transform">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-4 text-center text-gray-400 transition-smooth reveal">
+            <p>&copy; <span id="year"></span> MinecraftBR. Todos os direitos
+                reservados.</p>
+        </footer>
+    </body>
 </html>
