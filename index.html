@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MinecraftBR</title>
-  <meta name="description" content="Servidor Minecraft Brasil">
-  <link rel="icon" type="image/png" href="/image/favicon.png" />
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MinecraftBR</title>
+        <meta name="description" content="Servidor Minecraft Brasil">
+        <link rel="icon" type="image/png" href="/image/favicon.png" />
 
-  <!-- Tailwind -->
-  <script src="https://cdn.tailwindcss.com"></script>
+        <!-- Tailwind -->
+        <script src="https://cdn.tailwindcss.com"></script>
 
-  <script>
+        <script>
     function copiarip() {
       const ip = "minecraftbr.com";
       navigator.clipboard.writeText(ip).then(() => {
@@ -50,7 +50,7 @@
     });
   </script>
 
-  <style>
+        <style>
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -104,94 +104,125 @@
 
     .transition-smooth { transition: all 0.3s ease-in-out; }
   </style>
-</head>
+    </head>
 
-<body>
+    <body>
 
-  <!-- Navbar -->
-  <header class="fixed w-full z-50 mt-2 transition-smooth">
-    <nav class="bg-[#1a1f1d]/90 backdrop-blur-md rounded-xl shadow-md container mx-auto max-w-[1200px] flex justify-between items-center p-3">
-      <a href="#inicio" class="flex items-center space-x-2 mr-4">
-        <img src="/image/logo.png" alt="MinecraftBR Logo" class="h-10 transition-smooth hover:scale-105">
-      </a>
-      <ul class="flex space-x-4 text-gray-200 font-medium">
-        <li><a href="#inicio" class="hover:text-[#2ecc71] transition-smooth">Início</a></li>
-        <li><a href="#sobre" class="hover:text-[#f1c40f] transition-smooth">Sobre</a></li>
-        <li><a href="#contato" class="hover:text-[#2ecc71] transition-smooth">Contato</a></li>
-      </ul>
-    </nav>
-  </header>
+        <!-- Navbar -->
+        <header class="fixed w-full z-50 mt-2 transition-smooth">
+            <nav
+                class="bg-[#1a1f1d]/90 backdrop-blur-md rounded-xl shadow-md container mx-auto max-w-[1200px] flex justify-between items-center p-3">
+                <a href="#inicio" class="flex items-center space-x-2 mr-4">
+                    <img src="/image/logo.png" alt="MinecraftBR Logo"
+                        class="h-10 transition-smooth hover:scale-105">
+                </a>
+                <ul class="flex space-x-4 text-gray-200 font-medium">
+                    <li><a href="#inicio"
+                            class="hover:text-[#2ecc71] transition-smooth">Início</a></li>
+                    <li><a href="#sobre"
+                            class="hover:text-[#f1c40f] transition-smooth">Sobre</a></li>
+                    <li><a href="#contato"
+                            class="hover:text-[#2ecc71] transition-smooth">Contato</a></li>
+                </ul>
+            </nav>
+        </header>
 
-  <!-- Toast -->
-  <div id="toast" class="invisible fixed bottom-20 inset-x-0 flex justify-center z-50 pointer-events-none">
-    <div class="bg-[#2ecc71] text-white px-6 py-2 rounded-lg shadow-lg text-center">IP copiado!</div>
-  </div>
-
-  <!-- Hero -->
-  <section id="inicio" class="h-screen flex flex-col justify-center items-center text-center px-4">
-    <img src="/image/logo.png" alt="MinecraftBR" class="max-w-[500px] mb-6 reveal">
-    <h1 class="text-4xl md:text-5xl font-bold mb-4 reveal">
-      Bem-vindo ao <span class="text-[#2ecc71]">Minecraft</span><span class="text-[#f1c40f]">BR</span>
-    </h1>
-    <p class="text-gray-300 mb-6 max-w-xl reveal">
-      Um servidor Minecraft feito para você se divertir, explorar e criar com seus amigos.
-    </p>
-    <button onclick="copiarip()" class="bg-gradient-to-r from-[#2ecc71] to-[#f1c40f] text-gray-900 font-bold px-6 py-3 rounded-lg shadow-lg transition-smooth hover:scale-105 reveal">
-      MinecraftBR.com
-    </button>
-  </section>
-
-  <!-- Sobre -->
-  <section id="sobre" class="bg-[#1a1f1d] py-20">
-    <div class="container max-w-[1200px] mx-auto text-center px-6">
-      <h2 class="text-3xl font-bold mb-8 reveal text-[#f1c40f]">Sobre Nós</h2>
-      <p class="text-gray-300 mb-12 reveal">
-        Somos um servidor brasileiro dedicado à comunidade Minecraft! Aqui você encontra diversão, aventura e uma comunidade acolhedora.
-      </p>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-[#111816] p-6 rounded-lg shadow-md card-hover transition-smooth reveal">
-          <h3 class="text-xl font-bold mb-3 text-[#2ecc71]">Missão</h3>
-          <p class="text-gray-300">Oferecer servidores estáveis e divertidos para todos os jogadores.</p>
+        <!-- Toast -->
+        <div id="toast"
+            class="invisible fixed bottom-20 inset-x-0 flex justify-center z-50 pointer-events-none">
+            <div
+                class="bg-[#2ecc71] text-white px-6 py-2 rounded-lg shadow-lg text-center">IP
+                copiado!</div>
         </div>
-        <div class="bg-[#111816] p-6 rounded-lg shadow-md card-hover transition-smooth reveal">
-          <h3 class="text-xl font-bold mb-3 text-[#f1c40f]">Comunidade</h3>
-          <p class="text-gray-300">Promover eventos e experiências únicas para os jogadores.</p>
-        </div>
-        <div class="bg-[#111816] p-6 rounded-lg shadow-md card-hover transition-smooth reveal">
-          <h3 class="text-xl font-bold mb-3 text-[#2ecc71]">Valores</h3>
-          <p class="text-gray-300">Respeito, diversão e trabalho em equipe sempre em primeiro lugar.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Contato -->
-  <section id="contato" class="py-20 bg-[#0f172a]">
-    <div class="container max-w-[900px] mx-auto px-4">
-      <div class="grid md:grid-cols-2 gap-8 items-center">
-        <div class="text-center md:text-left">
-          <h2 class="text-3xl md:text-4xl font-bold mb-4 reveal text-[#f1c40f]">Entre em contato</h2>
-          <p class="text-gray-300 mb-6 reveal">Tem dúvidas? Fale com a gente!</p>
-          <a href="https://discord.gg/pqRwDAcMxK" target="_blank"
-             class="bg-gradient-to-r from-[#2ecc71] to-[#f1c40f] text-gray-900 font-bold px-6 py-3 rounded-lg shadow-lg transition-smooth hover:scale-105 reveal">
-            Discord
-          </a>
-        </div>
-        <div class="flex justify-center md:justify-end mt-6 md:mt-0 reveal">
-          <iframe
-            data-src="https://discord.com/widget?id=1425285227940675656&theme=dark&presence=1"
-            width="300" height="450" allowtransparency="true" frameborder="0"
-            sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
-            class="rounded-lg shadow-lg"></iframe>
-        </div>
-      </div>
-    </div>
-  </section>
+        <!-- Hero -->
+        <section id="inicio"
+            class="h-screen flex flex-col justify-center items-center text-center px-4">
+            <img src="/image/logo.png" alt="MinecraftBR"
+                class="max-w-[500px] mb-6 reveal">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 reveal">
+                Bem-vindo ao <span class="text-[#2ecc71]">Minecraft</span><span
+                    class="text-[#f1c40f]">BR</span>
+            </h1>
+            <p class="text-gray-300 mb-6 max-w-xl reveal">
+                Um servidor Minecraft feito para você se divertir, explorar e
+                criar com seus amigos.
+            </p>
+            <button onclick="copiarip()"
+                class="bg-gradient-to-r from-[#2ecc71] to-[#f1c40f] text-gray-900 font-bold px-6 py-3 rounded-lg shadow-lg transition-smooth hover:scale-105 reveal">
+                MinecraftBR.com
+            </button>
+        </section>
 
-  <!-- Footer -->
-  <footer class="py-4 text-center text-gray-400 reveal">
-    <p>&copy; <span id="year"></span> MinecraftBR. Todos os direitos reservados.</p>
-  </footer>
+        <!-- Sobre -->
+        <section id="sobre" class="bg-[#1a1f1d] py-20">
+            <div class="container max-w-[1200px] mx-auto text-center px-6">
+                <h2 class="text-3xl font-bold mb-8 reveal text-[#f1c40f]">Sobre
+                    Nós</h2>
+                <p class="text-gray-300 mb-12 reveal">
+                    Somos um servidor brasileiro dedicado à comunidade
+                    Minecraft! Aqui você encontra diversão, aventura e uma
+                    comunidade acolhedora.
+                </p>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div
+                        class="bg-[#111816] p-6 rounded-lg shadow-md card-hover transition-smooth reveal">
+                        <h3
+                            class="text-xl font-bold mb-3 text-[#2ecc71]">Missão</h3>
+                        <p class="text-gray-300">Oferecer servidores estáveis e
+                            divertidos para todos os jogadores.</p>
+                    </div>
+                    <div
+                        class="bg-[#111816] p-6 rounded-lg shadow-md card-hover transition-smooth reveal">
+                        <h3
+                            class="text-xl font-bold mb-3 text-[#f1c40f]">Comunidade</h3>
+                        <p class="text-gray-300">Promover eventos e experiências
+                            únicas para os jogadores.</p>
+                    </div>
+                    <div
+                        class="bg-[#111816] p-6 rounded-lg shadow-md card-hover transition-smooth reveal">
+                        <h3
+                            class="text-xl font-bold mb-3 text-[#2ecc71]">Valores</h3>
+                        <p class="text-gray-300">Respeito, diversão e trabalho
+                            em equipe sempre em primeiro lugar.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-</body>
-</html>
+        <!-- Contato -->
+        <section id="contato" class="py-20">
+            <div class="container max-w-[900px] mx-auto px-4">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="text-center md:text-left">
+                        <h2
+                            class="text-3xl md:text-4xl font-bold mb-4 reveal text-[#f1c40f]">Entre
+                            em contato</h2>
+                        <p class="text-gray-300 mb-6 reveal">Tem dúvidas? Fale
+                            com a gente!</p>
+                        <a href="https://discord.gg/pqRwDAcMxK" target="_blank"
+                            class="bg-gradient-to-r from-[#2ecc71] to-[#f1c40f] text-gray-900 font-bold px-6 py-3 rounded-lg shadow-lg transition-smooth hover:scale-105 reveal">
+                            Discord
+                        </a>
+                    </div>
+                    <div
+                        class="flex justify-center md:justify-end mt-6 md:mt-0 reveal">
+                        <iframe
+                            data-src="https://discord.com/widget?id=1425285227940675656&theme=dark&presence=1"
+                            width="300" height="450" allowtransparency="true"
+                            frameborder="0"
+                            sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+                            class="rounded-lg shadow-lg transition-transform duration-500 transform">
+                        </iframe>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="py-4 text-center text-gray-400 reveal">
+                <p>&copy; <span id="year"></span> MinecraftBR. Todos os direitos
+                    reservados.</p>
+            </footer>
+
+        </body>
+    </html>
